@@ -1,0 +1,16 @@
+{
+  "name": "cuatri2",
+  "version": "1.0.0",
+  "main": "test.js",
+  "scripts": {
+    "test": "test.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "moment": "^2.29.4"
+  },
+  "devDependencies": {},
+  "keywords": [],
+  "description": ""
+}
