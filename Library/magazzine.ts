@@ -7,4 +7,8 @@ export class Magazzine extends LibraryItem{
         super(title,year,isAvailable);
         this.editor=editor;
     }
+
+    getEditor() {
+        return this.editor;
+      }
 }
