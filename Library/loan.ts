@@ -3,10 +3,10 @@ import {User} from "./user";
 
 export class Loan{
     private isActive: Loan;
-    public libraryItem;
-    private user: User;
+    public libraryItem: LibraryItem;
+    public user: User;
     private startDate:  Date;
-    private returnDate: Date;
+    public returnDate: Date;
     
     constructor(libraryItem:LibraryItem,user:User,returnDate:Date){
         this.libraryItem = libraryItem;
@@ -15,8 +15,8 @@ export class Loan{
         this.returnDate= returnDate;
     };
 
-    checkUser(libraryItem){};
-    lendItem(libraryItem,user,returnDate){};
-    returnItem(libraryItem,user,returnDate){}
+    
+    lendItem(libraryItem:LibraryItem, user:User, returnDate:Date){};
 
+    
 }

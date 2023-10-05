@@ -1,17 +1,19 @@
+
+
 // clase mque representa los elementos de la biblioteca, como libros y revistas
 export class LibraryItem{
-    public title:string;
-    public year:string;
-    public isAvailable:boolean;
+    public title : string;
+    public year : string;
+    public isAvailable: boolean = true;
 
     constructor(title:string,year:string,isAvailable:boolean){
-        this.title=title;
-        this.year=year;
-        this.isAvailable=isAvailable;
+        this.title = title;
+        this.year = year;
+        this.isAvailable = isAvailable;
     };
 
-//metodo para verificar la disponibilidad del item    
-    checkAvammilability():boolean{
+    //metodo para verificar la disponibilidad del item    
+    checkAvailability():boolean{
         return this.isAvailable;
     };
 
@@ -23,12 +25,12 @@ export class LibraryItem{
         }else {
             console.log(`"${this.title}" no esta disponible para prestamos en este momento.`);
         }
-    };
+    }
 
     //metodo para devolver el item
     returnItem():void{
         this.isAvailable= true;
-        console.log(`"${this.title}" ha msido devuelto.`);
+        console.log(`"${this.title}" ha sido devuelto.`);
         
     };
 }
