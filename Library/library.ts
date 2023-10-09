@@ -1,124 +1,229 @@
 import * as rs from "readline-sync";
 import * as fs from "node:fs";
-import {User} from "./user";
-import {LibraryItem} from "./item"; 
-import {Loan} from "./loan";
-import { Console, log } from "node:console";
+import { User } from "./user";
+import { Item } from "./item";
+import { Loan } from "./loan";
 import { Book } from "./book";
+import { Magazzine } from "./magazzine";
+import { itemManager } from "./itemMmanager";
+import { UserManager } from "./userManager";
 
-class Library{
-    private items: LibraryItem[]=[];
-    private users: User[]=[];
-    private loans: Loan[]=[];
+export class Library {
+    private items: Item[] = [];
+    private user: User[] = [];
+    private userManager: UserManager[] = [];
+    private loans: Loan[] = [];
     private isOpen: boolean;
-    
 
-    constructor(){
+
+    constructor() {
         this.items = [];
-        this.users = [];
+        this.user = [];
+        this.userManager = [];
         this.loans = [];
+
     };
 
-    // // Metodo para agregar un usuario a la biblioteca
-    addUser(user:User): void{
-        this.users.push(user);
-        console.log(`"${user.name}" ha sido registrado in the library :)`);
-    };
+    readUsers() {
+        const readUsers = fs.readFileSync("./users.json", { encoding: "utf-8" });
 
-    restricUser(user){};
+        if (readUsers) {
+            this.items = JSON.parse(readUsers);
+            console.log("Usuarios");
 
-    // Mmmetodo para mostrar los prestamos activos
-    showActiveLoans() {
-        return this.loans.filter((loan) => loan.returnDate >= new Date());
-    };
-    
-
-    loanItem(libraryItem:LibraryItem,user:User,returnDate:Date):void{ /* tomamos el objeto libraryitme, un objeto user y una fecha returnDate como argumentos.*/
-            if (!libraryItem.checkAvailability()){ /*comprueba si libraryitmem esta disponible llamando al metodo chemckavailability() de libraryitme.*/
-                console.log(`"${libraryItem.title}" no esta disponiblem para prestamos.`); /*si no esta disponible*/
-                return;
+            if (!this.user.length) {
+                console.log("No se encontraron.\n");
+            } else {
+                this.user.forEach((user) => {
+                    console.log(`
+                        ID: ${user.id}
+                        name: ${user.name}
+                        ---
+                    `);
+                });
             }
-            
-            const loan= new Loan(libraryItem,user,returnDate); /*si el item esta disponible se creea una nueva instancia de loanm para regiustrar ala lista de prestamos mthis.loans*/
-            this.loans.push(loan);
-            libraryItem.loanItem(); /*luego llama al memtodo loanitem para marcarlo como prestado */
-            console.log(`"${libraryItem.title}" ha sido prestado a "${user.name}" hasta el "${returnDate}".`); /*y se presto*/
-            rs.keyInPause("\n");  
+        }
+
+        console.log(readUsers);
+        rs.keyInPause("\n");
+
     };
 
-    //metodo para devolver un item prestado    
-    returnDate(loan:Loan): void{
-        const index,showActiveLoans,indexof,(loan);
-        if(index!==1){
-            const returnItem = this.showActiveLoans.(index,1)
-        }
-    }
+    addUsers() {
+        console.log("Nuevo usuario");
+        rs.keyInPause("\n");
+        const readUsers = fs.readFileSync("./users.json", { encoding: "utf-8" });
+        if (readUsers) {
+            this.items = JSON.parse(readUsers);
+        } const name = rs.question("Ingrese el nombre del nuemvo usuario: ");
+        const address = rs.question("Ingrese una direccion: ");
+        const numberPhone = rs.questionInt("Ingrese su numero telefonico:");
+        const newUser = new User(name, address, numberPhone);
+        this.user.push(newUser);
+        console.log(newUser);
+        rs.keyInPause("\n");
 
-    returnItem(loan:Loan):void{
-        const index = this.loans.indexOf(loan); /*busca la posicion del objeto loan en la lista this loans*/
-        if(index !== -1){ /*si el prestamo no se encuentra index sera igual a menos 1. msi index no es igual a memnos 1 significa que encontro el prestamo*/
-            const returnedLoan = this.loans.splice(index, 1)[0]; /*se elimina el prestamo usandom this.loans.splice(index,1)arr0.*/
-            returnedLoan.libraryItem.returnItem(); /*se llama a returnitmemmmm de la biblioteca para marcarlo como devuelto*/
-            console.log(`"${returnedLoan.libraryItem.title}" ha sido demvuelto por "${returnedLoan.user.name}".`);  
-        }else {
-            console.log(`El prestamo mno se encontro men la lista.`);    
-        }
+        UserManager.appendUser(this.user);
+        console.log(this.user);
         rs.keyInPause("\n");
     };
 
-    // Metodo para agregar un elemento a la biblioteca
-    addItem(libraryItem:LibraryItem): void{
-        this.items.push(libraryItem); /* this.items esuna propiedad que almacemna una listade elememntos de la biblioteca.*/
-        console.log(`"${libraryItem.title}" ha sido agregado a la biblioteca.`); /*mthis.itemms.push(libraryitem) agrega al objeto libraryitem a la lista de elemtenso de la biblioteca.*/
+    deleteUser() {
+        console.log("Borrar usuario");
+        const idToDelete = rs.question("Ingrese el id del usuario que desea eliminar: ");
+        const recordIndex = this.user.findIndex(
+            (user) => user.id === idToDelete
+        );
+        if (recordIndex !== -1) {
+            const recordToDelete = this.user[recordIndex];
+            const confirmation = rs.keyInYN(
+                `Queres eliminar ${recordToDelete.id}? (Y/N)`
+            );
+            if (confirmation) {
+                this.user.splice(recordIndex, 1);
+                UserManager.appendUser(this.user);
+            } else {
+                console.log("Eliminacion cancelada. \n");
+            }
+        } else {
+            console.log("Usuario no encontrado.");
+        }
+        rs.keyInPause();
+
+    };
+
+    loanItem() { }
+
+    addItem(): void {
+        console.log(`Item.`);
         rs.keyInPause("\n");
-        
-    };
+        const readItems = fs.readFileSync("./items.json", { encoding: "utf-8" });
+        if (readItems) {
+            this.items = JSON.parse(readItems);
+        }
+        const type = rs.question("Ingrese de que tipo es: book o magazzine: ");
+        if (type == "book") {
+            const author = rs.question("Ingrese el autor: ");
+            const title = rs.question("Ingrese el titulo: ");
+            const year = rs.question("Ingrese el año: ");
 
-    deleteItem(){
-        console.log("borra2");
-        rs.keyInPause ("\n");
-        
-    };
-
-    readItems(){
-        try{
-            const readItems = fs.readFileSync("./items.json", { encoding: "utf-8"});
-            
-            console.log(readItems) ;
+            const newItem = new Book(title, author, year);
+            this.items.push(newItem);
+            console.log(newItem);
             rs.keyInPause("\n");
-        }catch{}
+
+        } else if (type == "magazzine") {
+            const editor = rs.question("Ingrese el editor: ");
+            const title = rs.question("Ingrese el titulo: ");
+            const year = rs.question("Ingrese el año: ");
+
+            const newItem = new Magazzine(title, editor, year);
+            this.items.push(newItem);
+            console.log(newItem);
+            rs.keyInPause("\n");
+
+        }
+        itemManager.appendItem(this.items);
+        console.log(this.items);
+
+
     };
 
-    menu(){
-        while(true){
+    deleteItem() {
+        console.log("delete");
+        const idToDelete = rs.question("Ingrese el id que desea eliminar:");
+        const recordIndex = this.items.findIndex(
+            (item) => item.id === idToDelete
+        );
+        if (recordIndex !== -1) {
+            const recordToDelete = this.items[recordIndex];
+            const confirmation = rs.keyInYN(
+                `Queres eliminar ${recordToDelete.id}? (Y/N)`
+            );
+            if (confirmation) {
+                this.items.splice(recordIndex, 1);
+                itemManager.appendItem(this.items);
+            } else {
+                console.log("Eliminacion cancelada. Item no eliminado. \n");
+            }
+        } else {
+            console.log("Item no encontrado.");
+        }
+        rs.keyInPause();
+    };
+
+    readItems() {
+        const readItems = fs.readFileSync("./items.json", { encoding: "utf-8" });
+
+        if (readItems) {
+            this.items = JSON.parse(readItems);
+            console.log("Items");
+
+            if (!this.items.length) {
+                console.log("No se encontraron.\n");
+            } else {
+                this.items.forEach((item) => {
+                    console.log(`
+                        ID: ${item.id}
+                        Title: ${item.title}
+                        Year: ${item.year}
+                        ---
+                    `);
+                });
+            }
+        }
+
+        console.log(readItems);
+        rs.keyInPause("\n");
+    };
+
+
+
+
+    menu() {
+        while (true) {
             console.clear();
             const choice = rs.keyInSelect(this.menuOptions);
-            switch(choice){
+            switch (choice) {
                 case 0:
-                     this.readItems();
-                break;
-                case 1: 
+                    this.readItems();
+                    break;
+                case 1:
                     this.addItem();
-                 break;
-                case 2: 
+                    break;
+                case 2:
                     this.deleteItem();
-                break;
+                    break;
                 case 3:
                     this.loanItem();
-                break;
+                    break;
+                case 4:
+                    this.readUsers();
+                    break;
+                case 5:
+                    this.addUsers();
+                    break;
+                case 6:
+                    this.deleteUser();
+                    break;
                 default:
-                     console.log("xxs");
-                return;
-                        
-                      
+                    console.log("baiiiii xxs");
+                    return;
+
+
             }
         }
-    }
-    menuOptions =["read", "add", "delete", "loan"
+    };
+
+    menuOptions = ["readItems", "addItems", "deleteItems", "loan", "readUsers", "addUser", "deleteUsers"
     ]
 }
-const sarasabook = new Library ();
+const sarasabook = new Library();
 //console.log(sarasabook.readItems());
 sarasabook.menu();
 
+
+function readItems() {
+    throw new Error("Function not implemented.");
+}
 

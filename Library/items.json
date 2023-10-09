@@ -1,0 +1,214 @@
+[
+  {
+    "isAvailable": true,
+    "id": "12321",
+    "type": "magazine",
+    "editor": "Editorial F",
+    "title": "Food & Cuisine",
+    "year": 2021
+  },
+  {
+    "isAvailable": true,
+    "id": "1231231",
+    "type": "book",
+    "author": "Olivia Martin",
+    "title": "Whispers in the Dark",
+    "year": 2016
+  },
+  {
+    "isAvailable": true,
+    "id": "32122132",
+    "type": "magazine",
+    "editor": "Editorial G",
+    "title": "Art & Culture",
+    "year": 2023
+  },
+  {
+    "isAvailable": true,
+    "id": "2321231",
+    "type": "book",
+    "author": "Lucas Garcia",
+    "title": "The Quantum Paradox",
+    "year": 2011
+  },
+  {
+    "isAvailable": true,
+    "id": "812312321",
+    "type": "magazine",
+    "editor": "Editorial H",
+    "title": "Business Insights",
+    "year": 2020
+  },
+  {
+    "isAvailable": true,
+    "id": "02132132",
+    "type": "book",
+    "author": "Eva Rodriguez",
+    "title": "The Enchanted Garden",
+    "year": 2020
+  },
+  {
+    "isAvailable": true,
+    "id": "82132131",
+    "type": "magazine",
+    "editor": "Editorial I",
+    "title": "Nature Explorer",
+    "year": 2022
+  },
+  {
+    "isAvailable": true,
+    "id": "892132132",
+    "type": "book",
+    "author": "Isabella Wilson",
+    "title": "The Time Traveler's Dilemma",
+    "year": 2014
+  },
+  {
+    "isAvailable": true,
+    "id": "99832132312",
+    "type": "magazine",
+    "editor": "Editorial J",
+    "title": "Music Melodies",
+    "year": 2021
+  },
+  {
+    "isAvailable": true,
+    "id": "121803da-6e64-4a56-8e1c-a5c9575988c5",
+    "title": "el viaje",
+    "year": "2023",
+    "author": "samira"
+  },
+  {
+    "isAvailable": true,
+    "id": "b6a71f77-acc6-48c3-a821-06d07d2564c7",
+    "title": "Echoes of Eternity",
+    "year": "2015",
+    "author": "Emily White"
+  },
+  {
+    "isAvailable": true,
+    "id": "2ab3431f-c4ad-46d4-8e1a-c81787eb07f6",
+    "title": "Beyond the Horizon",
+    "year": "2008",
+    "author": "David Johonson"
+  },
+  {
+    "isAvailable": true,
+    "id": "04ae0a3b-fc0f-44af-ad60-d3507290ab5a",
+    "title": "Science World",
+    "year": "2021",
+    "editor": "Editorial 8"
+  },
+  {
+    "isAvailable": true,
+    "id": "026e039f-d875-44e5-8cb3-ddc89e6973fa",
+    "title": "The Silent Forest",
+    "year": "2019",
+    "author": "Laura Brown"
+  },
+  {
+    "isAvailable": true,
+    "id": "bd313c4e-b5cc-4a73-a9d8-54f7a5be2791",
+    "title": "Fashion Trends",
+    "year": "2023",
+    "editor": "Editorial c"
+  },
+  {
+    "isAvailable": true,
+    "id": "802a9122-2d79-4576-92c0-25d9299c9cff",
+    "title": "The Art of Invention",
+    "year": "2005",
+    "author": "Michael Davis"
+  },
+  {
+    "isAvailable": true,
+    "id": "dd5dbe6e-6ff6-4982-8f8c-3fcf0decb4db",
+    "title": "Traveler�s Digiest",
+    "year": "2020",
+    "editor": "Editorial D"
+  },
+  {
+    "isAvailable": true,
+    "id": "e1644808-6f5a-4423-8d17-c29d2bb4f6c7",
+    "title": "Secret of the Mind",
+    "year": "2013",
+    "author": "Sophia Turner"
+  },
+  {
+    "isAvailable": true,
+    "id": "8b898670-4514-46dd-8f2d-c0997a1951ba",
+    "title": "Health & Wellnes",
+    "year": "2022",
+    "editor": "Editorial E"
+  },
+  {
+    "isAvailable": true,
+    "id": "5b2ab14b-0a08-4909-a4e4-dc23b09a5706",
+    "title": "Journey to the Stars",
+    "year": "2007",
+    "author": "Daniel Clark"
+  },
+  {
+    "isAvailable": true,
+    "id": "42fa8137-8088-4c9a-8748-616578a589ed",
+    "title": "Food & Cuisine",
+    "year": "2021",
+    "editor": "Editorial F"
+  },
+  {
+    "isAvailable": true,
+    "id": "4963e719-ae1c-4b5f-a1d0-23c0b9a4cdcb",
+    "title": "Whispers in the Dark",
+    "year": "2016",
+    "author": "Olivia Martin"
+  },
+  {
+    "isAvailable": true,
+    "id": "918b0efe-8eec-4ff0-8c58-2b546db35969",
+    "title": "Art & Culture",
+    "year": "2023",
+    "editor": "Editorial G"
+  },
+  {
+    "isAvailable": true,
+    "id": "6be74df3-61a6-4b53-94f6-510a4927dfbd",
+    "title": "The Quantum Paradox",
+    "year": "2011",
+    "author": "Lucas Garcia"
+  },
+  {
+    "isAvailable": true,
+    "id": "e24574bd-e88b-4260-9c73-c820806ce32a",
+    "title": "Business Inmsights",
+    "year": "2020",
+    "editor": "Editorial H"
+  },
+  {
+    "isAvailable": true,
+    "id": "a117ae0f-8d25-4d0d-aae6-4434b33cc10a",
+    "title": "The Enchanted Garden",
+    "year": "2020",
+    "author": "Eva Romdriguez"
+  },
+  {
+    "isAvailable": true,
+    "id": "a765e167-4fe4-40d4-bf92-72d94e7841b3",
+    "title": "Nature Explorer",
+    "year": "2022",
+    "editor": "Editorial I"
+  },
+  {
+    "isAvailable": true,
+    "id": "5fe81eae-4571-4d45-812e-bc1d313fffba",
+    "title": "The time traveler�s dilemma",
+    "year": "2014",
+    "author": "Isabella wilson"
+  },
+  {
+    "isAvailable": true,
+    "id": "7615977c-1387-4821-8f1f-55e9e5db7db4",
+    "title": "Music Melodies",
+    "year": "2021",
+    "editor": "Editorial J"
+  }
+]
