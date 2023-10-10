@@ -10,10 +10,10 @@ export class itemManager {
 
     static readItem() {
         try {
-            const items = fs.readFileSync("./items.json", { encoding: "utf-8" });
+            const itemsData = fs.readFileSync("./items.json", { encoding: "utf-8" });
             console.log("Agregar items.");
             rs.keyInPause("\n");
-            return JSON.parse(items) as Item[];
+            return JSON.parse(itemsData) as Item[];
         } catch (err) {
             console.log("Unexpected Error:", err);
             rs.keyInPause("\n");
@@ -21,9 +21,9 @@ export class itemManager {
 
     };
 
-    static appendItem(data: Item[]) {
+    static appendItem(itemsData: Item[]) {
         try {
-            fs.writeFileSync("./items.json", JSON.stringify(data, null, 2), { encoding: "utf-8" });
+            fs.writeFileSync("./items.json", JSON.stringify(itemsData, null, 2), { encoding: "utf-8" });
             console.log("COMPLETE")
             rs.keyInPause("\n");
         } catch (err) {

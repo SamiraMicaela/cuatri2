@@ -1,4 +1,5 @@
 import * as rs from "readline-sync";
+import * as crypto from "node:crypto";
 import * as fs from "node:fs";
 import { User } from "./user";
 import { Item } from "./item";
@@ -7,6 +8,7 @@ import { Book } from "./book";
 import { Magazzine } from "./magazzine";
 import { itemManager } from "./itemMmanager";
 import { UserManager } from "./userManager";
+import { loanManager } from "./loanManager";
 
 export class Library {
     private items: Item[] = [];
@@ -92,7 +94,62 @@ export class Library {
 
     };
 
-    loanItem() { }
+    loanItem() {
+
+        const fs = require('fs');
+        const readlineSync = require('readline-sync');
+
+
+        const usersData = JSON.parse(fs.readFileSync('./users.json', 'utf-8'));
+        const itemsData = JSON.parse(fs.readFileSync('./items.json', 'utf-8'));
+
+
+        const userId = readlineSync.question('Ingrese el ID de su usuario: ');
+
+
+        const user = usersData.find(user => user.id === userId);
+
+        if (!user) {
+            console.log('Usuario no encontrado');
+        } else {
+
+            console.log('Lista de artículos disponibles:');
+            itemsData.forEach((item, index) => {
+                if (item.isAvailable) {
+                    console.log(`${index + 1}. ID: ${item.id}, Título: ${item.title}`);
+                }
+            });
+
+
+            const itemId = readlineSync.question('Ingrese el ID del artículo deseado: ');
+
+
+            const item = itemsData.find(item => item.id === itemId);
+
+            if (!item) {
+                console.log('Artículo no encontrado');
+            } else {
+
+                const loan = {
+                    userId: user.id,
+                    itemId: item.id,
+                    loanDate: new Date().toISOString()
+                };
+
+                const loansData = JSON.parse(fs.readFileSync('./loans.json', 'utf-8'));
+                loansData.push(loan);
+                fs.writeFileSync('./loans.json', JSON.stringify(loansData, null, 2));
+
+                
+            }
+        }
+        
+        console.log('Préstamo realizado con éxito.');
+
+
+
+
+    };
 
     addItem(): void {
         console.log(`Item.`);
@@ -106,8 +163,9 @@ export class Library {
             const author = rs.question("Ingrese el autor: ");
             const title = rs.question("Ingrese el titulo: ");
             const year = rs.question("Ingrese el año: ");
+            const id = crypto.randomUUID();
 
-            const newItem = new Book(title, author, year);
+            const newItem = new Book(title, author, year, id);
             this.items.push(newItem);
             console.log(newItem);
             rs.keyInPause("\n");
@@ -116,8 +174,9 @@ export class Library {
             const editor = rs.question("Ingrese el editor: ");
             const title = rs.question("Ingrese el titulo: ");
             const year = rs.question("Ingrese el año: ");
+            const id = crypto.randomUUID();
 
-            const newItem = new Magazzine(title, editor, year);
+            const newItem = new Magazzine(title, editor, year, id);
             this.items.push(newItem);
             console.log(newItem);
             rs.keyInPause("\n");

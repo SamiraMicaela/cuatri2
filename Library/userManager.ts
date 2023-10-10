@@ -20,9 +20,9 @@ export class UserManager {
     };
 
     
-    static appendUser(data: User[]) {
+    static appendUser(usersData: User[]) {
         try {
-            fs.writeFileSync("./users.json", JSON.stringify(data, null, 2), { encoding: "utf-8" });
+            fs.writeFileSync("./users.json", JSON.stringify(usersData, null, 2), { encoding: "utf-8" });
             console.log("COMPLETE");
             rs.keyInPause("\n");
         } catch (error) {
