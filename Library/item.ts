@@ -6,7 +6,7 @@ export class Item {
     public year: string;
     public isAvailable: boolean = true;
 
-    constructor(title: string, year: string) {
+    constructor(title: string, year: string,id) {
         this.id = crypto.randomUUID();
         this.title = title;
         this.year = year;

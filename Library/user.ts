@@ -10,6 +10,7 @@ export class User {
   public penaltyCount: number;
 
   constructor(name: string, address: string, phoneNumber: number) {
+    this.id= crypto.randomUUID();
     this.name = name;
     this.address = address;
     this.phoneNumber = phoneNumber;
@@ -17,7 +18,6 @@ export class User {
 
   checkUser() { };
 
-  returnItmem() { };
 
   calculateScoring(daysLate: number): void {
     if (daysLate >= 1 && daysLate <= 2) {
@@ -34,23 +34,23 @@ export class User {
     }
   };
 
-  applyPenalty(): void {
-    if (this.scoring >= 6) {
-      console.log(`Usuario ${this.name} ha alcanzado 6 puntos de penalización.`);
-      console.log(`El usuario está penalizado y no puede retirar ítems por una semana.`);
+  // applyPenalty(): void {
+  //   if (this.scoring >= 6) {
+  //     console.log(`Usuario ${this.name} ha alcanzado 6 puntos de penalización.`);
+  //     console.log(`El usuario está penalizado y no puede retirar ítems por una semana.`);
 
-      // Establecer la fecha de levantamiento de la penalización (1 semana después de la fecha actual)
-      const currentDate = new Date();
-      const oneWeekLater = new Date(currentDate);
-      oneWeekLater.setDate(currentDate.getDate() + 7);
+  //     // Establecer la fecha de levantamiento de la penalización (1 semana después de la fecha actual)
+  //     const currentDate = new Date();
+  //     const oneWeekLater = new Date(currentDate);
+  //     oneWeekLater.setDate(currentDate.getDate() + 7);
 
-      this.penaltyCount += 1;
-      this.scoring = 0;// Reiniciar el scoring
+  //     this.penaltyCount += 1;
+  //     this.scoring = 0;// Reiniciar el scoring
 
-      console.log(oneWeekLater);// Devolver la fecha de levantamiento de la penalización
-    }
-  };
+  //     console.log(oneWeekLater);// Devolver la fecha de levantamiento de la penalización
+  //   }
+  // };
 }
 const usu = new User("samira", "callexd", 222222222);
-usu.applyPenalty();
+//usu.applyPenalty();
 usu.calculateScoring(2);

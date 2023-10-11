@@ -12,7 +12,7 @@ import { loanManager } from "./loanManager";
 
 export class Library {
     private items: Item[] = [];
-    private user: User[] = [];
+    private users: User[] = [];
     private userManager: UserManager[] = [];
     private loans: Loan[] = [];
     private isOpen: boolean;
@@ -20,7 +20,7 @@ export class Library {
 
     constructor() {
         this.items = [];
-        this.user = [];
+        this.users = [];
         this.userManager = [];
         this.loans = [];
 
@@ -33,13 +33,13 @@ export class Library {
             this.items = JSON.parse(readUsers);
             console.log("Usuarios");
 
-            if (!this.user.length) {
+            if (!this.users.length) {
                 console.log("No se encontraron.\n");
             } else {
-                this.user.forEach((user) => {
+                this.users.forEach((users) => {
                     console.log(`
-                        ID: ${user.id}
-                        name: ${user.name}
+                        ID: ${users.id}
+                        name: ${users.name}
                         ---
                     `);
                 });
@@ -60,30 +60,31 @@ export class Library {
         } const name = rs.question("Ingrese el nombre del nuemvo usuario: ");
         const address = rs.question("Ingrese una direccion: ");
         const numberPhone = rs.questionInt("Ingrese su numero telefonico:");
+
         const newUser = new User(name, address, numberPhone);
-        this.user.push(newUser);
+        this.users.push(newUser);
         console.log(newUser);
         rs.keyInPause("\n");
 
-        UserManager.appendUser(this.user);
-        console.log(this.user);
+        UserManager.appendUser(this.users);
+        console.log(this.users);
         rs.keyInPause("\n");
     };
 
     deleteUser() {
         console.log("Borrar usuario");
         const idToDelete = rs.question("Ingrese el id del usuario que desea eliminar: ");
-        const recordIndex = this.user.findIndex(
+        const recordIndex = this.users.findIndex(
             (user) => user.id === idToDelete
         );
         if (recordIndex !== -1) {
-            const recordToDelete = this.user[recordIndex];
+            const recordToDelete = this.users[recordIndex];
             const confirmation = rs.keyInYN(
                 `Queres eliminar ${recordToDelete.id}? (Y/N)`
             );
             if (confirmation) {
-                this.user.splice(recordIndex, 1);
-                UserManager.appendUser(this.user);
+                this.users.splice(recordIndex, 1);
+                UserManager.appendUser(this.users);
             } else {
                 console.log("Eliminacion cancelada. \n");
             }
@@ -96,18 +97,15 @@ export class Library {
 
     loanItem() {
 
-        const fs = require('fs');
-        const readlineSync = require('readline-sync');
-
-
+        
         const usersData = JSON.parse(fs.readFileSync('./users.json', 'utf-8'));
         const itemsData = JSON.parse(fs.readFileSync('./items.json', 'utf-8'));
 
 
-        const userId = readlineSync.question('Ingrese el ID de su usuario: ');
+        const userId = rs.question('Ingrese el ID de su usuario: ');
 
 
-        const user = usersData.find(user => user.id === userId);
+        const user = usersData.find(users => users.id === userId);
 
         if (!user) {
             console.log('Usuario no encontrado');
@@ -121,7 +119,7 @@ export class Library {
             });
 
 
-            const itemId = readlineSync.question('Ingrese el ID del artículo deseado: ');
+            const itemId = rs.question('Ingrese el ID del artículo deseado: ');
 
 
             const item = itemsData.find(item => item.id === itemId);
@@ -133,19 +131,22 @@ export class Library {
                 const loan = {
                     userId: user.id,
                     itemId: item.id,
-                    loanDate: new Date().toISOString()
+                    loanDate: new Date()
                 };
 
                 const loansData = JSON.parse(fs.readFileSync('./loans.json', 'utf-8'));
                 loansData.push(loan);
                 fs.writeFileSync('./loans.json', JSON.stringify(loansData, null, 2));
 
-                
+                console.log('Préstamo realizado con éxito .');
+                rs.keyInPause();
+                console.log(`${user.id }.${user.name} recibio un prestamo de ID: ${item.id}, Título: ${item.title}, a devolver ${item.returnDate}`);
+                rs.keyInPause();
             }
         }
         
-        console.log('Préstamo realizado con éxito.');
-
+        
+        
 
 
 

@@ -1,23 +1,16 @@
+import { Loan } from "./loan";
 import { Item } from "./item";
 import { User } from "./user";
 import * as fs from "node:fs";
 import * as rs from "readline-sync";
-import { itemManager } from "./itemMmanager";
-import { UserManager } from "./userManager";
+export class loanManager{
+    private loans : Loan[];
 
-export class Loan {
-    private isActive: Loan;
-    public Item: Item;
-    public user: User;
-    private startDate: Date;
-    public returnDate: Date;
-
-    constructor(Item: Item, user: User,returnDate) {
-        this.Item = Item;
-        this.user = user;
-        this.startDate = new Date;
-        this.returnDate = new Date;
+    constructor(){
+        this.loans;
     };
+
+
 
     // static readUsers(): User[] {
     //     try {
@@ -28,7 +21,6 @@ export class Loan {
     //         throw err;
     //     }
     // };
-
 
     // static readItems(): Item[] {
     //     try {
@@ -42,10 +34,10 @@ export class Loan {
 
     static readLoans() {
         try {
-            const loan = fs.readFileSync("./loans.json", { encoding: "utf-8" });
+            const loansData = fs.readFileSync("./loans.json", { encoding: "utf-8" });
             console.log("Prestamos.");
             rs.keyInPause("\n");
-            return JSON.parse(loan) as Loan[];
+            return JSON.parse(loansData) as Loan[];
         } catch (err) {
             console.log("Unexpected Error:", err);
             rs.keyInPause("\n");
@@ -53,9 +45,9 @@ export class Loan {
 
     };
 
-    static appendLoan(data: Item[]){
+    static appendLoan(loansData: Item[]){
         try {
-            fs.writeFileSync("./loans.json", JSON.stringify(data, null, 2), { encoding: "utf-8" });
+            fs.writeFileSync("./loans.json", JSON.stringify(loansData, null, 2), { encoding: "utf-8" });
             console.log("COMPLETE")
             rs.keyInPause("\n");
         } catch (err) {
@@ -64,6 +56,7 @@ export class Loan {
         }
     };
 
-    loanItems(){
-    }
-};
+    saveLoans() {
+        fs.writeFileSync("./users.json", JSON.stringify(this.loans, null, 2), { encoding: "utf-8" });
+    };
+}
