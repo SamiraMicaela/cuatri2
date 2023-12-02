@@ -7,15 +7,21 @@ body {
 
 h1 {
     text-align: center;
-    color: #333;
+    color: #5c0f30;
+}
+
+h2{
+    text-align: center;
+    color: #5c0f30;
 }
 
 /* estilos de la sección de personajes */
 #personajes {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
-    padding: 20px;
+    justify-content: center; /* 'center' para centrar las tarjetas */
+    align-items: center; /* propiedad para centrar verticalmente */
+    padding: 30px;
 }
 
 article {
@@ -24,7 +30,7 @@ article {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin: 10px;
     overflow: hidden;
-    width: 200px;
+    width: 250px; /* aumenta el ancho de las tarjetas */
     transition: transform 0.3s ease-in-out;
 }
 
@@ -38,10 +44,12 @@ article h2 {
     color: #333;
     font-size: 1.2em;
     margin: 10px 0;
+    text-align: center;
 }
 
 
 article p {
     margin: 5px 0;
     color: #666;
+    text-align: center; /* alineacion central del texto dentro de las tarjetas */
 }
