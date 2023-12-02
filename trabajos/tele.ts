@@ -3,7 +3,7 @@ class Televisor {
     private canal: number;
     private volumen: number;
 
-    constructor() {
+    constructor(prendido:boolean,canal:number,volumen:number) {
         this.prendido = false;
         this.canal = 0;
         this.volumen = 0;
@@ -79,6 +79,6 @@ class Televisor {
 }
 
 
-const tv1 = new Televisor();
+const tv1 = new Televisor(true,12,23);
 tv1.info();
  

@@ -1,24 +1,16 @@
-import { Item } from "./item";
-import { User } from "./user";
-import * as fs from "node:fs";
-import * as rs from "readline-sync";
-import { itemManager } from "./itemMmanager";
-import { UserManager } from "./userManager";
-
-export class Loan {
-    private isActive: Loan;
-    public Item: Item;
-    public user: User;
-    private startDate: Date;
-    public returnDate: Date;
-
-    constructor(Item: Item, user: User,startDare:Date,returnDate:Date) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Loan = void 0;
+var fs = require("node:fs");
+var rs = require("readline-sync");
+var Loan = /** @class */ (function () {
+    function Loan(Item, user, returnDate) {
         this.Item = Item;
         this.user = user;
         this.startDate = new Date;
         this.returnDate = new Date;
-    };
-
+    }
+    ;
     // static readUsers(): User[] {
     //     try {
     //         const userData = fs.readFileSync("./users.json", { encoding: "utf-8" });
@@ -28,8 +20,6 @@ export class Loan {
     //         throw err;
     //     }
     // };
-
-
     // static readItems(): Item[] {
     //     try {
     //         const itemsData = fs.readFileSync("./items.json", { encoding: "utf-8" });
@@ -39,31 +29,34 @@ export class Loan {
     //         throw err;
     //     }
     // };
-
-    static readLoans() {
+    Loan.readLoans = function () {
         try {
-            const loan = fs.readFileSync("./loans.json", { encoding: "utf-8" });
+            var loan = fs.readFileSync("./loans.json", { encoding: "utf-8" });
             console.log("Prestamos.");
             rs.keyInPause("\n");
-            return JSON.parse(loan) as Loan[];
-        } catch (err) {
+            return JSON.parse(loan);
+        }
+        catch (err) {
             console.log("Unexpected Error:", err);
             rs.keyInPause("\n");
         }
-
     };
-
-    static appendLoan(data: Item[]){
+    ;
+    Loan.appendLoan = function (data) {
         try {
             fs.writeFileSync("./loans.json", JSON.stringify(data, null, 2), { encoding: "utf-8" });
-            console.log("COMPLETE")
+            console.log("COMPLETE");
             rs.keyInPause("\n");
-        } catch (err) {
+        }
+        catch (err) {
             console.log("Unexpected Error:", err);
             rs.keyInPause("\n");
         }
     };
-
-    loanItems(){
-    }
-};
+    ;
+    Loan.prototype.loanItems = function () {
+    };
+    return Loan;
+}());
+exports.Loan = Loan;
+;

@@ -51,6 +51,4 @@ export class User {
   //   }
   // };
 }
-const usu = new User("samira", "callexd", 222222222);
-//usu.applyPenalty();
-usu.calculateScoring(2);
+

@@ -1,0 +1,42 @@
+[
+  {
+    "userId": "43977db4-f43f-4f6a-9566-33e5c5d57f76",
+    "itemId": "3eac95b0-8279-4db3-9656-4a72cf6f8bca",
+    "loanDate": "2023-10-10T17:08:00.265Z"
+  },
+  {
+    "userId": "bad1801b-29dc-42c9-abfe-130e4fac1d65",
+    "itemId": "e1644808-6f5a-4423-8d17-c29d2bb4f6c7",
+    "loanDate": "2023-10-10T17:13:25.531Z"
+  },
+  {
+    "userId": "bad1801b-29dc-42c9-abfe-130e4fac1d65",
+    "itemId": "7615977c-1387-4821-8f1f-55e9e5db7db4",
+    "loanDate": "2023-10-10T17:19:48.567Z"
+  },
+  {
+    "userId": "bad1801b-29dc-42c9-abfe-130e4fac1d65",
+    "itemId": "9ff0846f-4c41-43e4-ae94-62350456be3d",
+    "loanDate": "2023-10-10T17:20:30.547Z"
+  },
+  {
+    "userId": "bad1801b-29dc-42c9-abfe-130e4fac1d65",
+    "itemId": "a765e167-4fe4-40d4-bf92-72d94e7841b3",
+    "loanDate": "2023-10-10T18:11:20.659Z"
+  },
+  {
+    "userId": "710eaa23-1cf9-4130-8ad2-7d0fb2565c2b",
+    "itemId": "3eac95b0-8279-4db3-9656-4a72cf6f8bca",
+    "loanDate": "2023-10-10T18:13:28.424Z"
+  },
+  {
+    "userId": "004c9138-ad8c-4bf2-afa9-e68fe0e3da9d",
+    "itemId": "6be74df3-61a6-4b53-94f6-510a4927dfbd",
+    "loanDate": "2023-10-10T18:22:05.662Z"
+  },
+  {
+    "userId": "4f8659e6-1b25-4722-ba57-f710d4d583d6",
+    "itemId": "e24574bd-e88b-4260-9c73-c820806ce32a",
+    "loanDate": "2023-10-10T18:23:53.100Z"
+  }
+]
